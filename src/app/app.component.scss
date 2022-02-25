@@ -1,0 +1,178 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* HSL */
+$baseColor: rgb(219, 219, 219);
+$borderColor: rgb(149, 149, 149);
+$childColor: red;
+$childBorderColor: rgb(200, 0, 0);
+
+$hieght: 15px; // 比例條高度
+$border-width: 2px;
+$bottom: 0px; // 下方距離
+$timelinePadding: 15px;
+
+
+.timeline {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 70px;
+  background-color: rgb(231, 231, 231);
+  border: $border-width solid $borderColor;
+  border-radius: 5px;
+  padding: 5px;
+
+  * {
+    font-size: 1rem;
+  }
+  .title {
+    padding-left: 10px;
+  }
+
+  .parent {
+    position: relative;
+    background: $baseColor;
+    width: calc(100vw - #{$timelinePadding}*2);
+    height: $hieght;
+    bottom: -5px;
+    left: 50%;
+    margin-left: calc(-50vw + #{$timelinePadding});
+    border: $border-width solid $borderColor;
+    border-radius: 5px;
+
+    .line-group {
+      @for $i from 1 through 5 {
+        div:nth-child(#{$i}) {
+          // 頭跟尾 不加虛線
+          @if ($i != 1 and $i != 5) {
+            border-right: $border-width dotted $borderColor;
+          }
+          width: $border-width * 2;
+          height: $hieght - $border-width * 2;
+          position: absolute;
+          top: 0;
+          left: calc((#{$i} - 1) * 25% - #{$border-width} * 2);
+        }
+      }
+
+      // 線下方的字
+      span {
+        position: absolute;
+        text-align: center;
+        bottom: -20px;
+        width: 25px;
+        left: -8px;
+      }
+    }
+  }
+
+  .child {
+    opacity: 0.8;
+    height: $hieght - $border-width * 2;
+    background: $childColor;
+    border: $border-width solid $childBorderColor;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+  }
+
+  .child1 {
+    width: 15%;
+    left: 0;
+  }
+
+  .child2 {
+    width: 30%;
+    left: 15%;
+  }
+
+}
+
+
+
+//#region msgBox
+$box-color-left: #c2e1f5;
+$box-border-color-left: #88b7d5;
+$box-color-right: #c2f5cb;
+$box-border-color-right: #88d58c;
+
+.msgBox-left {
+	position: relative;
+  background: $box-color-left;
+  border-radius: 5px;
+  border: 2px solid $box-border-color-left;
+  margin: .8rem 0 0 0;
+  padding: 0 .5rem .2rem .5rem;
+  width: fit-content;
+  max-width: 80%;
+  font-size: 1.2rem;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.msgBox-left:after, .msgBox-left:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.msgBox-left:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: $box-color-left;
+	border-width: 7px;
+	margin-top: -7px;
+}
+.msgBox-left:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-right-color: $box-border-color-left;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
+
+
+
+
+// msgBox-right
+.msgBox-right {
+  float: right;
+	position: relative;
+  background: $box-color-right;
+  border-radius: 5px;
+  border: 2px solid $box-border-color-right;
+  margin: .8rem 0 0 0;
+  padding: 0 .5rem .2rem .5rem;
+  width: fit-content;
+  max-width: 80%;
+  font-size: 1.2rem;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.msgBox-right:after, .msgBox-right:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.msgBox-right:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: $box-color-right;
+	border-width: 7px;
+	margin-top: -7px;
+}
+.msgBox-right:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: $box-border-color-right;
+	border-width: 10px;
+	margin-top: -10px;
+}
+//#endregion
